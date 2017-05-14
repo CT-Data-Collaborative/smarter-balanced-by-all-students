@@ -46,7 +46,23 @@
               "Math"
             ]
 			    }
-        }, {         
+        }, { 
+          "name": "Grade",
+          "type": "string",
+          "dimension": true, 
+          "constraints": {
+		        "enum": [
+		          "Grade 3",
+              "Grade 4",
+              "Grade 5",
+              "Grade 6",
+              "Grade 7",
+              "Grade 8",
+              "Grade 11", 
+              "All"
+            ]
+			    }
+        }, {          
           "name": "Measure Type",
           "type": "string",
           "dimension": true, 
@@ -75,7 +91,8 @@
               "Level 4 Exceeded Count", 
               "Level 4 Exceeded Percent", 
               "Level 3 & 4 Met or Exceeded Count", 
-              "Level 3 & 4 Met or Exceeded Percent"
+              "Level 3 & 4 Met or Exceeded Percent",
+              "AverageVSS"
             ]
 			    }
         }, {
@@ -166,6 +183,7 @@
       "ckan_name": "Default",
 			"value": {
 		 		"District": "Connecticut",
+		 		"Grade": "All",
 		 		"Year": ["2015-2016"]
 			},
 		  	"type": "object"
@@ -178,13 +196,14 @@
         "District": "Hartford School District",
         "Year": "2014-2015",
         "Variable": "Total Number of Students",
+        "Grade": "Grade 3",
         "Subject": "ELA",
         "Measure Type": "Number" 
       },
       "expected": {
         "type": "$match",
         "number type": "int",
-        "value": 10579
+        "value": 1646
       } 
     },  
     {
@@ -193,13 +212,14 @@
         "District": "Killingly School District",
         "Year": "2014-2015",
         "Variable": "Level 1 Not Met Percent",
+        "Grade": "Grade 5",
         "Subject": "Math",
         "Measure Type": "Percent" 
       },
       "expected": {
         "type": "$match",
         "number type": "float",
-        "value": 33.6
+        "value": 40.9
       } 
     },   
     {
@@ -208,13 +228,14 @@
         "District": "Connecticut",
         "Year": "2015-2016",
         "Variable": "Smarter Balanced Participation Rate",
+        "Grade": "Grade 7",
         "Subject": "ELA",
         "Measure Type": "Percent" 
       },
       "expected": {
         "type": "$match",
         "number type": "float",
-        "value": 98.7
+        "value": 98.4
       } 
     },  
     {
@@ -223,6 +244,7 @@
         "District": "Thomaston School District",
         "Year": "2015-2016",
         "Variable": "Level 3 & 4 Met or Exceeded Count",
+        "Grade": "All",
         "Subject": "Math",
         "Measure Type": "Number" 
       },
@@ -249,14 +271,23 @@
         "Level 4 Exceeded Count", 
         "Level 4 Exceeded Percent", 
         "Level 3 & 4 Met or Exceeded Count", 
-        "Level 3 & 4 Met or Exceeded Percent"         
-      ]
-    }, 
-    {
+        "Level 3 & 4 Met or Exceeded Percent",
+        "AverageVSS"
+      ], 
       "Subject": [
         "ELA", 
         "Math"
-      ]
+      ],
+      "Grade": [
+        "Grade 3",
+        "Grade 4",
+        "Grade 5",
+        "Grade 6",
+        "Grade 7",
+        "Grade 8",
+        "Grade 11", 
+        "All"
+      ]      
     }
   ]
 }
