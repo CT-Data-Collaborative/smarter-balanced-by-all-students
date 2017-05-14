@@ -184,6 +184,7 @@
 			"value": {
 		 		"District": "Connecticut",
 		 		"Grade": "All",
+		 		"Variable": "Total Number of Students",
 		 		"Year": ["2015-2016"]
 			},
 		  	"type": "object"
