@@ -308,9 +308,21 @@ complete_sb_long$"Measure Type"[which(complete_sb_long$Variable %in% c("Smarter 
                                                                        "Level 4 Exceeded Percent", 
                                                                        "Level 3 & 4 Met or Exceeded Percent"))] <- "Percent"
 
+#Remove count and percent from variable names
+complete_sb_long$Variable[which(grepl("^Level 1 Not Met", complete_sb_long$Variable))] <- "Level 1 Not Met"
+complete_sb_long$Variable[which(grepl("^Level 2 Approaching", complete_sb_long$Variable))] <- "Level 2 Approaching"
+complete_sb_long$Variable[which(grepl("^Level 3 Met", complete_sb_long$Variable))] <- "Level 3 Met"
+complete_sb_long$Variable[which(grepl("^Level 4 Exceeded", complete_sb_long$Variable))] <- "Level 4 Exceeded"
+complete_sb_long$Variable[which(grepl("^Level 3 & 4 Met or Exceeded", complete_sb_long$Variable))] <- "Level 3 & 4 Met or Exceeded"
+
 #Order columns
 complete_sb_long <- complete_sb_long %>% 
   select(`District`, `FIPS`, `Year`, `Grade`, `Subject`, `Variable`, `Measure Type`, `Value`)
+
+#Separate out admin and level variables
+levels <- unique(grep("Level", complete_sb_long$Variable, value=T))
+sb_level <- complete_sb_long[complete_sb_long$Variable %in% levels,]
+sb_admin <- complete_sb_long[!complete_sb_long$Variable %in% levels,]
 
 #Use this to find if there are any duplicate entires for a given district
 # test <- complete_sb_long[,c("District", "Year")]
