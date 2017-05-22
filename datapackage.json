@@ -1,7 +1,7 @@
 {
   "name": "smarter-balanced-by-all-students",
   "datapackage_version": "1.0-beta.18",
-  "title": "Smarter Balanced by All Students",
+  "title": "Smarter Balanced by All Students Performance",
   "description": "Smarter Balanced reports the number and percentage of students assessed by the Smarter Balanced (SB) Assessment, per subgroup.",
   "version": "1.0",
   "licenses": [{
