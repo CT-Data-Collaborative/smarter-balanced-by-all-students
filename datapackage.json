@@ -21,7 +21,7 @@
   }],
   "contributor": [],
   "resources": [{
-    "path": "data/smarter_balanced_all_students_2015-2016.csv",
+    "path": "data/smarter_balanced_all_students_2015-2016_by_Performance.csv",
     "format": "csv",
     "schema": {
       "fields": [{
@@ -78,21 +78,11 @@
           "dimension": true, 
           "constraints": {
 		        "enum": [
-              "Total Number of Students", 
-              "Total Number Tested", 
-              "Smarter Balanced Participation Rate",
-              "Total Number with Scored Tests", 
-              "Level 1 Not Met Count", 
-              "Level 1 Not Met Percent", 
-              "Level 2 Approaching Count", 
-              "Level 2 Approaching Percent", 
-              "Level 3 Met Count", 
-              "Level 3 Met Percent", 
-              "Level 4 Exceeded Count", 
-              "Level 4 Exceeded Percent", 
-              "Level 3 & 4 Met or Exceeded Count", 
-              "Level 3 & 4 Met or Exceeded Percent",
-              "AverageVSS"
+              "Level 1 Not Met", 
+              "Level 2 Approaching", 
+              "Level 3 Met", 
+              "Level 4 Exceeded", 
+              "Level 3 & 4 Met or Exceeded"
             ]
 			    }
         }, {
@@ -103,11 +93,11 @@
       }
     }
   ],
-  "last_modified": "05/14/17",
+  "last_modified": "05/22/17",
   "ckan_extras": {
     "full_description": {
       "ckan_name": "Full Description",
-      "value": "All students who attempted at least one Smarter Balanced (SB) test item in both the computer adaptive test and the performance task in the subject area (English Language Arts or Math) are included in the achievement calculations. In SY2013-14, nearly all school districts opted to use the Smarter Balanced Assessment Consortium (SBAC) as a field test, with individual student results not reported. SBAC was mandatory starting with SY2014-15. Connecticut State Department of Education collects test results for grades 3 through 8 in the spring of each year. CTdata.org carries annual results for grades 3, 4, and 8 for ELA and math. Charter Districts have been entered as individual districts.",
+      "value": "All students who attempted at least one Smarter Balanced (SB) test item in both the computer adaptive test and the performance task in the subject area (English Language Arts or Math) are included in the achievement calculations. In SY2013-14, nearly all school districts opted to use the Smarter Balanced Assessment Consortium (SBAC) as a field test, with individual student results not reported. SBAC was mandatory starting with SY2014-15. Connecticut State Department of Education collects test results for grades 3 through 8 and 11 in the spring of each year. This data set presents the number and percent of students who scored at each proficiency level. Charter Districts have been entered as individual districts.",
       "type": "string"
     },
     "suppression": {
@@ -184,7 +174,7 @@
 			"value": {
 		 		"District": "Connecticut",
 		 		"Grade": "All",
-		 		"Variable": "Total Number of Students",
+		 		"Variable": "Level 3 & 4 Met or Exceeded",
 		 		"Year": ["2015-2016"]
 			},
 		  	"type": "object"
@@ -196,7 +186,7 @@
       "filter": {
         "District": "Hartford School District",
         "Year": "2014-2015",
-        "Variable": "Total Number of Students",
+        "Variable": "Level 2 Approaching",
         "Grade": "Grade 3",
         "Subject": "ELA",
         "Measure Type": "Number" 
@@ -204,7 +194,7 @@
       "expected": {
         "type": "$match",
         "number type": "int",
-        "value": 1646
+        "value": 431
       } 
     },  
     {
@@ -212,7 +202,7 @@
       "filter": {
         "District": "Killingly School District",
         "Year": "2014-2015",
-        "Variable": "Level 1 Not Met Percent",
+        "Variable": "Level 1 Not Met",
         "Grade": "Grade 5",
         "Subject": "Math",
         "Measure Type": "Percent" 
@@ -228,7 +218,7 @@
       "filter": {
         "District": "Connecticut",
         "Year": "2015-2016",
-        "Variable": "Smarter Balanced Participation Rate",
+        "Variable": "Level 3 Met",
         "Grade": "Grade 7",
         "Subject": "ELA",
         "Measure Type": "Percent" 
@@ -236,7 +226,7 @@
       "expected": {
         "type": "$match",
         "number type": "float",
-        "value": 98.4
+        "value": 35.2
       } 
     },  
     {
@@ -244,7 +234,7 @@
       "filter": {
         "District": "Thomaston School District",
         "Year": "2015-2016",
-        "Variable": "Level 3 & 4 Met or Exceeded Count",
+        "Variable": "Level 3 & 4 Met or Exceeded",
         "Grade": "All",
         "Subject": "Math",
         "Measure Type": "Number" 
@@ -259,21 +249,11 @@
   "dimension_groups": [
     {
       "Variable": [
-        "Total Number of Students", 
-        "Total Number Tested", 
-        "Smarter Balanced Participation Rate",
-        "Total Number with Scored Tests", 
-        "Level 1 Not Met Count", 
-        "Level 1 Not Met Percent", 
-        "Level 2 Approaching Count", 
-        "Level 2 Approaching Percent", 
-        "Level 3 Met Count", 
-        "Level 3 Met Percent", 
-        "Level 4 Exceeded Count", 
-        "Level 4 Exceeded Percent", 
-        "Level 3 & 4 Met or Exceeded Count", 
-        "Level 3 & 4 Met or Exceeded Percent",
-        "AverageVSS"
+        "Level 1 Not Met", 
+        "Level 2 Approaching", 
+        "Level 3 Met", 
+        "Level 4 Exceeded", 
+        "Level 3 & 4 Met or Exceeded"
       ], 
       "Subject": [
         "ELA", 
@@ -288,7 +268,11 @@
         "Grade 8",
         "Grade 11", 
         "All"
-      ]      
+      ],
+      "Measure Type": [
+        "Number", 
+        "Percent"
+      ]
     }
   ]
 }
