@@ -1,7 +1,5 @@
 Smarter-Balanced-by-All-Students
 
-[![Build Status](https://travis-ci.org/CT-Data-Collaborative/smarter-balanced-by-all-students.svg?branch=master)](https://travis-ci.org/CT-Data-Collaborative/smarter-balanced-by-all-students)
-
 Smarter Balanced reports the number and percentage of students assessed by the Smarter Balanced (SB) Assessment, per subgroup.
 
 Data Source: <http://edsight.ct.gov/>

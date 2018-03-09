@@ -21,7 +21,7 @@
   }],
   "contributor": [],
   "resources": [{
-    "path": "data/smarter_balanced_all_students_2015-2016_by_Performance.csv",
+    "path": "data/smarter_balanced_all_students_2015-2017_by_Performance.csv",
     "format": "csv",
     "schema": {
       "fields": [{
@@ -93,7 +93,7 @@
       }
     }
   ],
-  "last_modified": "05/22/17",
+  "last_modified": "03/09/18",
   "ckan_extras": {
     "full_description": {
       "ckan_name": "Full Description",
@@ -102,7 +102,7 @@
     },
     "suppression": {
       "ckan_name": "Suppression",
-      "value": "",
+      "value": "Disaggregations resulting in counts of less than 6 students are suppressed",
       "type": "string"
     },
     "technical_notes": {
@@ -143,12 +143,12 @@
     },
     "years_in_catalog": {
       "ckan_name": "Years in Catalog",
-      "value": ["2014-2015", "2015-2016"],
+      "value": ["2014-2015", "2015-2016", "2016-2017"],
       "type": "array"
     },
     "latest_year": {
       "ckan_name": "Latest Year Available",
-      "value": "2015-2016",
+      "value": "2016-2017",
       "type": "string"
     },
     "disabled_views": {
@@ -175,7 +175,7 @@
 		 		"District": "Connecticut",
 		 		"Grade": "All",
 		 		"Variable": "Level 3 & 4 Met or Exceeded",
-		 		"Year": ["2015-2016"]
+		 		"Year": ["2016-2017"]
 			},
 		  	"type": "object"
     }  
@@ -244,7 +244,23 @@
         "number type": "int",
         "value": 197
       } 
-    }    
+    }, 
+    {
+      "type": "$lookup",
+      "filter": {
+        "District": "Ledyard School District",
+        "Year": "2016-2017",
+        "Variable": "Level 4 Exceeded",
+        "Grade": "Grade 6",
+        "Subject": "ELA",
+        "Measure Type": "Percent" 
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "float",
+        "value": 18.5
+      } 
+    }  
   ],
   "dimension_groups": [
     {

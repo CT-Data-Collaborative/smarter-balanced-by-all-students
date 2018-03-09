@@ -30,8 +30,10 @@ sb_dist_indiv <- data.frame(stringsAsFactors = F)
 sb_dist_indiv_noTrend <- grep("trend", all_dist_indiv, value=T, invert=T)
 for (i in 1:length(sb_dist_indiv_noTrend)) {
   current_file <- read.csv(paste0(path_to_raw_data, "/", sb_dist_indiv_noTrend[i]), stringsAsFactors=F, header=F )
-  colnames(current_file) <- current_file[5,]
-  current_file <- current_file[-c(1:5),]
+  #which row has "District" in column one?
+  rownum <- which(current_file$V1 == "District")
+  colnames(current_file) <- current_file[rownum,]
+  current_file <- current_file[-c(1:rownum),]
   current_file <- current_file[, !(names(current_file) == "District Code")]
   get_year <- as.numeric(substr(unique(unlist(gsub("[^0-9]", "", unlist(sb_dist_indiv_noTrend[i])), "")), 1, 4))
   get_year <- paste0(get_year, "-", get_year + 1) 
@@ -44,8 +46,10 @@ sb_state_indiv <- data.frame(stringsAsFactors = F)
 sb_state_indiv_noTrend <- grep("trend", all_state_indiv, value=T, invert=T)
 for (i in 1:length(sb_state_indiv_noTrend)) {
   current_file <- read.csv(paste0(path_to_raw_data, "/", sb_state_indiv_noTrend[i]), stringsAsFactors=F, header=F )
-  colnames(current_file) <- current_file[5,]
-  current_file <- current_file[-c(1:5),]
+  #which row has "District" in column one?
+  rownum <- which(current_file$V1 == "District")
+  colnames(current_file) <- current_file[rownum,]
+  current_file <- current_file[-c(1:rownum),]
   get_year <- as.numeric(substr(unique(unlist(gsub("[^0-9]", "", unlist(sb_state_indiv_noTrend[i])), "")), 1, 4))
   get_year <- paste0(get_year, "-", get_year + 1) 
   current_file$Year <- get_year
@@ -58,8 +62,10 @@ sb_dist_combined <- data.frame(stringsAsFactors = F)
 sb_dist_combined_noTrend <- grep("trend", all_dist_combined, value=T, invert=T)
 for (i in 1:length(sb_dist_combined_noTrend)) {
   current_file <- read.csv(paste0(path_to_raw_data, "/", sb_dist_combined_noTrend[i]), stringsAsFactors=F, header=F )
-  colnames(current_file) <- current_file[4,]
-  current_file <- current_file[-c(1:4),]
+  #which row has "District" in column one?
+  rownum <- which(current_file$V1 == "District")
+  colnames(current_file) <- current_file[rownum,]
+  current_file <- current_file[-c(1:rownum),]
   current_file <- current_file[, !(names(current_file) == "District Code")]
   get_year <- as.numeric(substr(unique(unlist(gsub("[^0-9]", "", unlist(sb_dist_combined_noTrend[i])), "")), 1, 4))
   get_year <- paste0(get_year, "-", get_year + 1) 
@@ -72,8 +78,10 @@ sb_state_combined <- data.frame(stringsAsFactors = F)
 sb_state_combined_noTrend <- grep("trend", all_state_combined, value=T, invert=T)
 for (i in 1:length(sb_state_combined_noTrend)) {
   current_file <- read.csv(paste0(path_to_raw_data, "/", sb_state_combined_noTrend[i]), stringsAsFactors=F, header=F )
-  colnames(current_file) <- current_file[4,]
-  current_file <- current_file[-c(1:4),]
+  #which row has "District" in column one?
+  rownum <- which(current_file$V1 == "District")
+  colnames(current_file) <- current_file[rownum,]
+  current_file <- current_file[-c(1:rownum),]
   get_year <- as.numeric(substr(unique(unlist(gsub("[^0-9]", "", unlist(sb_state_combined_noTrend[i])), "")), 1, 4))
   get_year <- paste0(get_year, "-", get_year + 1) 
   current_file$Year <- get_year
@@ -197,7 +205,7 @@ district_dp_URL <- 'https://raw.githubusercontent.com/CT-Data-Collaborative/ct-s
 district_dp <- datapkg_read(path = district_dp_URL)
 districts <- (district_dp$data[[1]])
 
-sb_fips <- merge(sb, districts, by.x = "District", by.y = "District", all=T)
+sb_fips <- merge(sb, districts, by= "District", all.y=T)
 
 sb_fips$District <- NULL
 
@@ -209,12 +217,19 @@ sb_fips$Grade[sb_fips$Grade == "5"] <- "Grade 5"
 sb_fips$Grade[sb_fips$Grade == "6"] <- "Grade 6"
 sb_fips$Grade[sb_fips$Grade == "7"] <- "Grade 7"
 sb_fips$Grade[sb_fips$Grade == "8"] <- "Grade 8"
+sb_fips$Grade[sb_fips$Grade == "03"] <- "Grade 3"
+sb_fips$Grade[sb_fips$Grade == "04"] <- "Grade 4"
+sb_fips$Grade[sb_fips$Grade == "05"] <- "Grade 5"
+sb_fips$Grade[sb_fips$Grade == "06"] <- "Grade 6"
+sb_fips$Grade[sb_fips$Grade == "07"] <- "Grade 7"
+sb_fips$Grade[sb_fips$Grade == "08"] <- "Grade 8"
 sb_fips$Grade[sb_fips$Grade == "11"] <- "Grade 11"
 
 
 #backfill year
 years <- c("2014-2015",
-           "2015-2016")
+           "2015-2016", 
+           "2016-2017")
 subject <- c("ELA", 
              "Math")
 grade <- c("Grade 3",
@@ -238,7 +253,7 @@ backfill_years$Year <- as.character(backfill_years$Year)
 
 backfill_years <- arrange(backfill_years, FixedDistrict)
 
-complete_sb <- merge(sb_fips, backfill_years, all=T)
+complete_sb <- merge(sb_fips, backfill_years, by = c("FixedDistrict", "Grade", "Subject", "Year"), all.y=T)
 
 #remove duplicated Year rows
 complete_sb <- complete_sb[!with(complete_sb, is.na(complete_sb$Year)),]
@@ -250,7 +265,7 @@ complete_sb[["FIPS"]][is.na(complete_sb[["FIPS"]])] <- ""
 #recode missing data with -6666
 complete_sb[is.na(complete_sb)] <- -6666
 
-#recode suppressed data with -9999
+#recode suppressed data with -9999 (less than 6)
 complete_sb[complete_sb == "*"]<- -9999
 
 names(complete_sb)[names(complete_sb) == "FixedDistrict"] <- "District"
@@ -315,9 +330,34 @@ complete_sb_long$Variable[which(grepl("^Level 3 Met", complete_sb_long$Variable)
 complete_sb_long$Variable[which(grepl("^Level 4 Exceeded", complete_sb_long$Variable))] <- "Level 4 Exceeded"
 complete_sb_long$Variable[which(grepl("^Level 3 & 4 Met or Exceeded", complete_sb_long$Variable))] <- "Level 3 & 4 Met or Exceeded"
 
+complete_sb_long$Grade <- factor(complete_sb_long$Grade, 
+                                 levels = c("All", 
+                                            "Grade 3",
+                                            "Grade 4",
+                                            "Grade 5",
+                                            "Grade 6",
+                                            "Grade 7",
+                                            "Grade 8",
+                                            "Grade 11"))
+
+
+complete_sb_long$Variable <- factor(complete_sb_long$Variable, 
+                                    levels = c("Level 1 Not Met",
+                                               "Level 2 Approaching",
+                                               "Level 3 Met",
+                                               "Level 4 Exceeded",
+                                               "Level 3 & 4 Met or Exceeded",
+                                               "Total Number of Students",
+                                               "Total Number Tested",
+                                               "Total Number with Scored Tests",
+                                               "Smarter Balanced Participation Rate",
+                                               "AverageVSS"))
+
+complete_sb_long$Value <- as.numeric(complete_sb_long$Value)
 #Order columns
 complete_sb_long <- complete_sb_long %>% 
-  select(`District`, `FIPS`, `Year`, `Grade`, `Subject`, `Variable`, `Measure Type`, `Value`)
+  select(District, FIPS, Year, Grade, Subject, Variable, `Measure Type`, Value) %>% 
+  arrange(District, Year, Grade, Subject, Variable, `Measure Type`)
 
 #Separate out admin and level variables
 levels <- unique(grep("Level", complete_sb_long$Variable, value=T))
@@ -331,7 +371,23 @@ sb_admin <- complete_sb_long[!complete_sb_long$Variable %in% levels,]
 #Write CSV
 write.table(
   complete_sb_long,
-  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2016.csv"),
+  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2017.csv"),
+  sep = ",",
+  row.names = F
+)
+
+#Write CSV
+write.table(
+  sb_level,
+  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2017_by_Performance.csv"),
+  sep = ",",
+  row.names = F
+)
+
+#Write CSV
+write.table(
+  sb_admin,
+  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2017_by_Participation.csv"),
   sep = ",",
   row.names = F
 )
