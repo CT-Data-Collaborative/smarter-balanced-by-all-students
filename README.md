@@ -3,6 +3,7 @@ Smarter-Balanced-by-All-Students
 Smarter Balanced reports the number and percentage of students assessed by the Smarter Balanced (SB) Assessment, per subgroup.
 
 Data Source: <http://edsight.ct.gov/>
+In 2017-2018, they changed column header names. So download raw data for 2017-2018 and manually change column names in .csv to match previous years.
 
 ## License MIT
 

@@ -1,0 +1,18 @@
+"Smarter Balanced Assessments, 2017-18"
+"State of Connecticut, ELA and Math, All Grades, All Students"
+
+"",,,,,,,"Level 1Not Met",,"Level 2Approaching",,"Level 3Met",,"Level 4Exceeded",,"Level 3&4Met or Exceeded",,""
+"District","Grade","Subject","Total Numberof Students","Total NumberTested","Smarter BalancedParticipationRate","Total Number with Scored Tests","Level 1 Not Met  Count","%","Level 2 Approaching  Count","%","Level 3 Met  Count","%","Level 4 Exceeded  Count","%","Level 3&4 Met or Exceeded Count","%","AverageVSS"
+"State of Connecticut",03,"ELA",37767,37536,99.4,37523,8891,23.7,8689,23.2,8793,23.4,11150,29.7,19943,53.1,2435
+"State of Connecticut",03,"Math",37744,37481,99.3,37470,8987,24.0,8338,22.3,10845,28.9,9300,24.8,20145,53.8,2440
+"State of Connecticut",04,"ELA",38643,38379,99.3,38372,10416,27.1,6871,17.9,8974,23.4,12111,31.6,21085,54.9,2479
+"State of Connecticut",04,"Math",38621,38313,99.2,38304,7647,20.0,11008,28.7,10669,27.9,8980,23.4,19649,51.3,2484
+"State of Connecticut",05,"ELA",39918,39599,99.2,39589,9148,23.1,7338,18.5,12105,30.6,10998,27.8,23103,58.4,2517
+"State of Connecticut",05,"Math",39899,39542,99.1,39533,11246,28.4,10512,26.6,7912,20.0,9863,24.9,17775,45.0,2510
+"State of Connecticut",06,"ELA",39437,39026,99.0,39014,9030,23.1,8816,22.6,12695,32.5,8473,21.7,21168,54.3,2534
+"State of Connecticut",06,"Math",39429,38960,98.8,38942,10898,28.0,10934,28.1,8367,21.5,8743,22.5,17110,43.9,2527
+"State of Connecticut",07,"ELA",39911,39401,98.7,39385,9082,23.1,8658,22.0,13786,35.0,7859,20.0,21645,55.0,2556
+"State of Connecticut",07,"Math",39890,39283,98.5,39261,11739,29.9,10192,26.0,8591,21.9,8739,22.3,17330,44.1,2542
+"State of Connecticut",08,"ELA",40157,39431,98.2,39414,8241,20.9,9049,23.0,14294,36.3,7830,19.9,22124,56.1,2575
+"State of Connecticut",08,"Math",40165,39320,97.9,39296,13020,33.1,9398,23.9,7623,19.4,9255,23.6,16878,43.0,2558
+
