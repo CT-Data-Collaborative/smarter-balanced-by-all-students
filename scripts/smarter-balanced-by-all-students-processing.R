@@ -229,7 +229,9 @@ sb_fips$Grade[sb_fips$Grade == "11"] <- "Grade 11"
 #backfill year
 years <- c("2014-2015",
            "2015-2016", 
-           "2016-2017")
+           "2016-2017",
+           "2017-2018",
+           "2018-2019")
 subject <- c("ELA", 
              "Math")
 grade <- c("Grade 3",
@@ -371,7 +373,7 @@ sb_admin <- complete_sb_long[!complete_sb_long$Variable %in% levels,]
 #Write CSV
 write.table(
   complete_sb_long,
-  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2017.csv"),
+  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2019.csv"),
   sep = ",",
   row.names = F
 )
@@ -379,7 +381,7 @@ write.table(
 #Write CSV
 write.table(
   sb_level,
-  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2017_by_Performance.csv"),
+  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2019_by_Performance.csv"),
   sep = ",",
   row.names = F
 )
@@ -387,7 +389,7 @@ write.table(
 #Write CSV
 write.table(
   sb_admin,
-  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2017_by_Participation.csv"),
+  file.path(path_to_top_level, "data", "smarter_balanced_all_students_2015-2019_by_Participation.csv"),
   sep = ",",
   row.names = F
 )
